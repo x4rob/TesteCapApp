@@ -63,7 +63,7 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(153, 153, 153));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Clique no botão + para adicionar uma nova tarefa!");
+        jLabel9.setText("Clique no botÃ£o + para adicionar uma nova tarefa!");
 
         javax.swing.GroupLayout jPanelEmptyTasksLayoutLayout = new javax.swing.GroupLayout(jPanelEmptyTasksLayout);
         jPanelEmptyTasksLayout.setLayout(jPanelEmptyTasksLayoutLayout);
@@ -173,7 +173,7 @@ public class MainScreen extends javax.swing.JFrame {
             jPanelTasksToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTasksToolBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelTasksToolBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelTasksToolBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelTasksToolBarAdd)
                 .addContainerGap())
@@ -233,7 +233,7 @@ public class MainScreen extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Nome", "Descrição", "Prazo", "Concluída"
+                "Nome", "DescriÃ§Ã£o", "Prazo", "ConcluÃ­da"
             }
         ) {
             Class[] types = new Class [] {
@@ -373,7 +373,7 @@ public void decoreteTableTasks(){
     jTableTasks.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
     jTableTasks.getTableHeader().setBackground(new Color(0,153,102));
     jTableTasks.getTableHeader().setForeground(new Color(255,255,255));
-    //jTableTasks.setAutoCreateRowSorter(true) ordena as colunas em ordem alfabética ou numérica
+    //jTableTasks.setAutoCreateRowSorter(true) ordena as colunas em ordem alfabï¿½tica ou numï¿½rica
     jTableTasks.setAutoCreateRowSorter(true);
 
 }

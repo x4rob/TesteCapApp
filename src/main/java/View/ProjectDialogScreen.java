@@ -15,11 +15,11 @@ import javax.swing.JOptionPane;
 public class ProjectDialogScreen extends javax.swing.JDialog {
 
     ProjectController controller;
-    
+
     public ProjectDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         controller = new ProjectController();
     }
 
@@ -64,7 +64,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
             jPanelToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelToolBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelToolBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jLabelToolBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelToolBarSave)
                 .addContainerGap())
@@ -125,7 +125,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanelRegisterProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -146,6 +146,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
 
     private void jLabelToolBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSaveMouseClicked
         // TODO add your handling code here:
+
         try {
             Project project = new Project();
             project.setName(jTextFieldName.getText());
@@ -154,10 +155,13 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
             controller.save(project);
 
             JOptionPane.showMessageDialog(rootPane, "Projeto salva com sucesso");
-            dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e);
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
+
+        this.dispose();
+
+
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 
     /**
@@ -214,4 +218,3 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldName;
     // End of variables declaration//GEN-END:variables
 }
-

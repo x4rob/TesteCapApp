@@ -393,4 +393,8 @@ public void decoreteTableTasks(){
     jTableTasks.setAutoCreateRowSorter(true);
 
 }
+    public void initDataController() {
+        projectController = new ProjectController();
+        taskController = new TaskController();
+    }
 }

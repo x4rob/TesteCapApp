@@ -6,8 +6,11 @@ package View;
 
 import Controller.ProjectController;
 import Controller.TaskController;
+import Model.Project;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -15,13 +18,15 @@ import java.awt.Font;
  */
 public class MainScreen extends javax.swing.JFrame {
 
-   
+    DefaultListModel<Project> projectModel;
     ProjectController projectController;
     TaskController taskController;
-    
+
     public MainScreen() {
         initComponents();
         decoreteTableTasks();
+        initDataController();
+        initComponentsModel();
     }
 
     /**
@@ -314,16 +319,16 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelProjectsToolBarAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectsToolBarAddMouseClicked
-            // TODO add your handling code here:
-            ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
-            projectDialogScreen.setVisible(true);
+        // TODO add your handling code here:
+        ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
+        projectDialogScreen.setVisible(true);
     }//GEN-LAST:event_jLabelProjectsToolBarAddMouseClicked
 
     private void jLabelTasksToolBarAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTasksToolBarAddMouseClicked
         TaskDialogScreen taskDialogScreen = new TaskDialogScreen(this, rootPaneCheckingEnabled);
-        
+
         taskDialogScreen.setProject(null);
-        
+
         taskDialogScreen.setVisible(true);
     }//GEN-LAST:event_jLabelTasksToolBarAddMouseClicked
 
@@ -384,17 +389,29 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JTable jTableTasks;
     // End of variables declaration//GEN-END:variables
 
-public void decoreteTableTasks(){
+    public void decoreteTableTasks() {
 
-    jTableTasks.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
-    jTableTasks.getTableHeader().setBackground(new Color(0,153,102));
-    jTableTasks.getTableHeader().setForeground(new Color(255,255,255));
-    //jTableTasks.setAutoCreateRowSorter(true) ordena as colunas em ordem alfab�tica ou num�rica
-    jTableTasks.setAutoCreateRowSorter(true);
+        jTableTasks.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+        jTableTasks.getTableHeader().setBackground(new Color(0, 153, 102));
+        jTableTasks.getTableHeader().setForeground(new Color(255, 255, 255));
+        //jTableTasks.setAutoCreateRowSorter(true) ordena as colunas em ordem alfab�tica ou num�rica
+        jTableTasks.setAutoCreateRowSorter(true);
 
-}
+    }
+
     public void initDataController() {
         projectController = new ProjectController();
         taskController = new TaskController();
+    }
+    
+    public void initComponentsModel(){
+        projectModel = new DefaultListModel<Project>();
+        loadProject();
+    
+    }
+    public void loadProject(){
+    
+        List<Project> projects = projectController.getAll();
+        projectModel.clear();
     }
 }

@@ -5,9 +5,11 @@
 package View;
 
 import Controller.TaskController;
+import Model.Project;
 import Model.Task;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +18,7 @@ import java.util.Date;
 public class TaskDialogScreen extends javax.swing.JDialog {
 
     TaskController controller;
+    Project project;
     
     public TaskDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -110,7 +113,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         jLabelDeadline.setForeground(new java.awt.Color(0, 153, 102));
         jLabelDeadline.setText("Prazo");
 
-        jFormattedTextFieldDeadline.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextFieldDeadline.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
         jLabelNote.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelNote.setForeground(new java.awt.Color(0, 153, 102));
@@ -179,6 +182,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         
         try {
             Task task = new Task();
+            task.setIdProject(project.getId());
             task.setNome(jLabelName.getText());
             task.setDescription(jTextAreaDescription.getText());
             task.setNotes(jTextAreaNote.getText());
@@ -186,8 +190,14 @@ public class TaskDialogScreen extends javax.swing.JDialog {
             
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date deadLine = null;
+            deadLine = dateFormat.parse(jFormattedTextFieldDeadline.getText());
+            task.setDeadLine(deadLine);
+            controller.save(task);
+            
+            JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso!");
             
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
         this.dispose();
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
@@ -250,4 +260,11 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     private javax.swing.JTextArea jTextAreaNote;
     private javax.swing.JTextField jTextFieldName;
     // End of variables declaration//GEN-END:variables
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    
 }
+

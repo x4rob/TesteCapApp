@@ -166,6 +166,11 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelTasksToolBarTitle.setText("Tarefas");
 
         jLabelTasksToolBarAdd.setIcon(new javax.swing.ImageIcon("C:\\Users\\Computador\\Documents\\NetBeansProjects\\TesteCapApp\\src\\main\\resources\\add.png")); // NOI18N
+        jLabelTasksToolBarAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTasksToolBarAddMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelTasksToolBarLayout = new javax.swing.GroupLayout(jPanelTasksToolBar);
         jPanelTasksToolBar.setLayout(jPanelTasksToolBarLayout);
@@ -310,6 +315,14 @@ public class MainScreen extends javax.swing.JFrame {
             ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
             projectDialogScreen.setVisible(true);
     }//GEN-LAST:event_jLabelProjectsToolBarAddMouseClicked
+
+    private void jLabelTasksToolBarAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTasksToolBarAddMouseClicked
+        TaskDialogScreen taskDialogScreen = new TaskDialogScreen(this, rootPaneCheckingEnabled);
+        
+        taskDialogScreen.setProject(null);
+        
+        taskDialogScreen.setVisible(true);
+    }//GEN-LAST:event_jLabelTasksToolBarAddMouseClicked
 
     /**
      * @param args the command line arguments

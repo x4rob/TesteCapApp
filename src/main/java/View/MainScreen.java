@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.ProjectController;
+import Controller.TaskController;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -13,9 +15,10 @@ import java.awt.Font;
  */
 public class MainScreen extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainScreen
-     */
+   
+    ProjectController projectController;
+    TaskController taskController;
+    
     public MainScreen() {
         initComponents();
         decoreteTableTasks();

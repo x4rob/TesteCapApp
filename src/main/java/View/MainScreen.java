@@ -9,6 +9,8 @@ import Controller.TaskController;
 import Model.Project;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 
@@ -317,6 +319,18 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
         projectDialogScreen.setVisible(true);
+        
+        /*
+        Quando a janela projectDialog for fechado, isso dispara o evento
+        loadProject fazendo com que uma nova busca seja exibida 
+        e atualizando a pagina inicial.
+        */
+        projectDialogScreen.addWindowListener(new WindowAdapter(){
+        
+            public void windowClosed(WindowEvent e){
+                loadProject();
+            }
+        });
     }//GEN-LAST:event_jLabelProjectsToolBarAddMouseClicked
 
     private void jLabelTasksToolBarAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTasksToolBarAddMouseClicked
@@ -409,7 +423,7 @@ public class MainScreen extends javax.swing.JFrame {
         List<Project> projects = projectController.getAll();
         projectModel.clear();
         
-        for (int i = 0; i < projects.size() -1; i++) {
+        for (int i = 0; i < projects.size(); i++) {
             
             Project project = projects.get(i);
             projectModel.addElement(project);

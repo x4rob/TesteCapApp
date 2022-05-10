@@ -18,7 +18,7 @@ import javax.swing.DefaultListModel;
  */
 public class MainScreen extends javax.swing.JFrame {
 
-    DefaultListModel<Project> projectModel;
+    DefaultListModel projectModel;
     ProjectController projectController;
     TaskController taskController;
 
@@ -150,7 +150,7 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanelProjectsToolBarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelProjectsToolBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelProjectsToolBarAdd)
                 .addContainerGap())
         );
@@ -207,11 +207,6 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelProjects.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jListProjects.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jListProjects.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jListProjects.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListProjects.setFixedCellHeight(50);
         jListProjects.setSelectionBackground(new java.awt.Color(0, 153, 102));
@@ -405,7 +400,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     public void initComponentsModel(){
-        projectModel = new DefaultListModel<Project>();
+        projectModel = new DefaultListModel();
         loadProject();
     
     }
@@ -419,5 +414,6 @@ public class MainScreen extends javax.swing.JFrame {
             Project project = projects.get(i);
             projectModel.addElement(project);
         }
+        jListProjects.setModel(projectModel);
     }
 }

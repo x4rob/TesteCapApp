@@ -20,17 +20,41 @@ public class TaskTableModel extends AbstractTableModel{
 
     @Override
     public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return tasks.size();
     }
 
     @Override
     public int getColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return columns.length;   
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch(columnIndex){
+            case 1:
+                
+             return tasks.get(rowIndex).getNome();
+        
+            case 2:
+                
+                break;
+    
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                
+                break;
+    
+            default:
+        
+        }
     }
     
 }

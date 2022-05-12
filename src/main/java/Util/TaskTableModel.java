@@ -13,48 +13,49 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Computador
  */
-public class TaskTableModel extends AbstractTableModel{
-    
-    String [] columns = {"Nome", "Descrição", "Prazo", "Tarefa Concluída", "Editar", "Excluir"};
+public class TaskTableModel extends AbstractTableModel {
+
+    String[] columns = {"Nome", "Descrição", "Prazo", "Tarefa Concluída", "Editar", "Excluir"};
     List<Task> tasks = new ArrayList();
 
     @Override
     public int getRowCount() {
-     return tasks.size();
+        return tasks.size();
     }
 
     @Override
     public int getColumnCount() {
-     return columns.length;   
+        return columns.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch(columnIndex){
+        switch (columnIndex) {
             case 1:
-                
-             return tasks.get(rowIndex).getNome();
-        
+
+                return tasks.get(rowIndex).getNome();
+
             case 2:
-                
-                break;
-    
+
+                return tasks.get(rowIndex).getDescription();
+
             case 3:
                 
-                break;
+                return tasks.get(rowIndex).getDeadLine();
             case 4:
                 
-                break;
+                return tasks.get(rowIndex).isCompleted();
             case 5:
-                
-                break;
+
+               return "";
             case 6:
-                
-                break;
-    
+
+                return "";
+
             default:
-        
+                return "Dado não encontrado!";
+
         }
     }
-    
+
 }

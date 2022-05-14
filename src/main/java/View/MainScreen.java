@@ -7,6 +7,7 @@ package View;
 import Controller.ProjectController;
 import Controller.TaskController;
 import Model.Project;
+import Model.Task;
 import Util.TaskTableModel;
 import java.awt.Color;
 import java.awt.Font;
@@ -422,8 +423,18 @@ public class MainScreen extends javax.swing.JFrame {
         taskTableModel = new TaskTableModel();
         
         jTableTasks.setModel(taskTableModel);
+        loadTasks();
     
     }
+    
+    public void loadTasks(){
+    
+        List<Task> tasks = taskController.getAll(1);
+        taskTableModel.setTasks(tasks);
+    
+    }
+    
+    
     public void loadProject(){
     
         List<Project> projects = projectController.getAll();

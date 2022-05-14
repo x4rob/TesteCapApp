@@ -28,10 +28,27 @@ public class TaskTableModel extends AbstractTableModel {
     public int getColumnCount() {
         return columns.length;
     }
+
     @Override
-    public String getColumnName(int columnIndex){
-    
+    public String getColumnName(int columnIndex) {
+
         return columns[columnIndex];
+    }
+
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+
+        return columnIndex == 3;
+
+    }
+
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+
+        if (tasks.isEmpty()) {
+            return Object.class;
+
+        }
+        return this.getValueAt(0, columnIndex).getClass();
     }
 
     @Override
@@ -48,12 +65,13 @@ public class TaskTableModel extends AbstractTableModel {
             case 2:
                 SimpleDateFormat dateFormate = new SimpleDateFormat("dd/MM/yyyy");
                 return dateFormate.format(tasks.get(rowIndex).getDeadLine());
+
             case 3:
-                
+
                 return tasks.get(rowIndex).isCompleted();
             case 4:
 
-               return "";
+                return "";
             case 5:
 
                 return "";

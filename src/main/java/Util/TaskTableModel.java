@@ -5,6 +5,7 @@
 package Util;
 
 import Model.Task;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -45,8 +46,8 @@ public class TaskTableModel extends AbstractTableModel {
                 return tasks.get(rowIndex).getDescription();
 
             case 2:
-                
-                return tasks.get(rowIndex).getDeadLine();
+                SimpleDateFormat dateFormate = new SimpleDateFormat("dd/MM/yyyy");
+                return dateFormate.format(tasks.get(rowIndex).getDeadLine());
             case 3:
                 
                 return tasks.get(rowIndex).isCompleted();

@@ -7,6 +7,7 @@ package View;
 import Controller.ProjectController;
 import Controller.TaskController;
 import Model.Project;
+import Util.TaskTableModel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
@@ -20,7 +21,8 @@ import javax.swing.DefaultListModel;
  */
 public class MainScreen extends javax.swing.JFrame {
 
-    DefaultListModel projectModel;
+    DefaultListModel projectsModel;
+    TaskTableModel taskTableModel;
     ProjectController projectController;
     TaskController taskController;
 
@@ -414,20 +416,24 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     public void initComponentsModel(){
-        projectModel = new DefaultListModel();
+        projectsModel = new DefaultListModel();
         loadProject();
+        
+        taskTableModel = new TaskTableModel();
+        
+        jTableTasks.setModel(taskTableModel);
     
     }
     public void loadProject(){
     
         List<Project> projects = projectController.getAll();
-        projectModel.clear();
+        projectsModel.clear();
         
         for (int i = 0; i < projects.size(); i++) {
             
             Project project = projects.get(i);
-            projectModel.addElement(project);
+            projectsModel.addElement(project);
         }
-        jListProjects.setModel(projectModel);
+        jListProjects.setModel(projectsModel);
     }
 }

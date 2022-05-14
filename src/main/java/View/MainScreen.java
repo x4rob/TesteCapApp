@@ -423,13 +423,13 @@ public class MainScreen extends javax.swing.JFrame {
         taskTableModel = new TaskTableModel();
         
         jTableTasks.setModel(taskTableModel);
-        loadTasks();
+        loadTasks(1);
     
     }
     
-    public void loadTasks(){
+    public void loadTasks(int idProject){
     
-        List<Task> tasks = taskController.getAll(1);
+        List<Task> tasks = taskController.getAll(idProject);
         taskTableModel.setTasks(tasks);
     
     }

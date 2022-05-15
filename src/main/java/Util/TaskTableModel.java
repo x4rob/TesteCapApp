@@ -81,7 +81,18 @@ public class TaskTableModel extends AbstractTableModel {
 
         }
     }
-
+    
+    @Override
+    /*
+    Aqui vai funcionar como um marcador, ele pega o valor, que no caso é
+    o click do mouse, transforma em um valor boolean e repassa esse valor visua-
+    mente para tela como se fosse um checkclick
+    */
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex){
+    
+        tasks.get(rowIndex).setCompleted((boolean) aValue);
+    }
+    
     public String[] getColumns() {
         return columns;
     }

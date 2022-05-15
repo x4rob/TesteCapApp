@@ -60,7 +60,7 @@ public class MainScreen extends javax.swing.JFrame {
         jScrollPaneProjects = new javax.swing.JScrollPane();
         jListProjects = new javax.swing.JList<>();
         jPanelEmptyTasks = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneTasks = new javax.swing.JScrollPane();
         jTableTasks = new javax.swing.JTable();
 
         jPanelEmptyTasksLayout.setBackground(java.awt.Color.white);
@@ -279,20 +279,20 @@ public class MainScreen extends javax.swing.JFrame {
                 jTableTasksMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableTasks);
+        jScrollPaneTasks.setViewportView(jTableTasks);
 
         javax.swing.GroupLayout jPanelEmptyTasksLayout = new javax.swing.GroupLayout(jPanelEmptyTasks);
         jPanelEmptyTasks.setLayout(jPanelEmptyTasksLayout);
         jPanelEmptyTasksLayout.setHorizontalGroup(
             jPanelEmptyTasksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmptyTasksLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneTasks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelEmptyTasksLayout.setVerticalGroup(
             jPanelEmptyTasksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmptyTasksLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneTasks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -431,8 +431,8 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelProjectsToolBar;
     private javax.swing.JPanel jPanelTasksToolBar;
     private javax.swing.JPanel jPanelToolBar;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneProjects;
+    private javax.swing.JScrollPane jScrollPaneTasks;
     private javax.swing.JTable jTableTasks;
     // End of variables declaration//GEN-END:variables
 
@@ -468,7 +468,30 @@ public class MainScreen extends javax.swing.JFrame {
         taskTableModel.setTasks(tasks);
         
     }
+    private void showJTableTasks(boolean hasTasks){
+        if (hasTasks) {
+            if (jPanelEmptyTasksLayout.isVisible()) {
+                jPanelEmptyTasksLayout.setVisible(false);
+                jPanelEmptyTasks.remove(jPanelEmptyTasksLayout);
+            }
+            
+            jPanelEmptyTasks.add(jScrollPaneTasks);
+            jScrollPaneTasks.setVisible(true);
+            jScrollPaneTasks.setSize(jPanelEmptyTasks.getWidth(), jPanelEmptyTasks.getHeight());
+        } else {
+            
+            if(jScrollPaneTasks.isVisible()){
+                jScrollPaneTasks.setVisible(false);
+                jPanelEmptyTasks.remove(jScrollPaneTasks);
+            
+            }
+            jPanelEmptyTasks.add(jPanelEmptyTasksLayout);
+            jPanelEmptyTasksLayout.setVisible(true);
+            jPanelEmptyTasksLayout.setSize(jPanelEmptyTasks.getWidth(), jPanelEmptyTasks.getHeight());
+        }
     
+    
+    }
     public void loadProject() {
         
         List<Project> projects = projectController.getAll();

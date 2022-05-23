@@ -20,26 +20,40 @@ import java.util.List;
  */
 public class ProjectController {
 
+    
     public void save(Project project) {
-        String sql = "INSERT TO project(name, description, createdAt, updatedAt) VALUES(?, ?, ?, ?)";
-        Connection connection = null;
-        PreparedStatement statement = null;
+        String sql = "INSERT INTO projects(name, description, createdAt, updatedAt) VALUES (?, ?, ?, ?)";
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
         try {
-            connection = ConnectionFactory.getConnection();
-            statement = connection.prepareStatement(sql);
+            //Cria uma conexï¿½o com o banco
+            conn = ConnectionFactory.getConnection();
+            //Cria um PreparedStatment, classe usada para executar a query
+            stmt = conn.prepareStatement(sql);
 
-            statement.setString(1, project.getName());
-            statement.setString(2, project.getDescription());
-            statement.setDate(3, new Date(project.getCreatedAt().getTime()));
-            statement.setDate(4, new Date(project.getUpdatedAt().getTime()));
+            stmt.setString(1, project.getName());
+            stmt.setString(2, project.getDescription());
+            stmt.setDate(3, new java.sql.Date(project.getCreatedAt().getTime()));
+            stmt.setDate(4, new java.sql.Date(project.getUpdatedAt().getTime()));
 
-            statement.execute();
-
-        } catch (Exception ex) {
-
-            throw new RuntimeException("Erro ao salvar projeto! " + ex.getMessage(), ex);
-        }finally {
-            ConnectionFactory.closeConnection(connection, statement);
+            //Executa a sql para inserï¿½ï¿½o dos dados
+            stmt.execute();
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro ao salvar o projeto", ex);
+        } finally {
+            //Fecha as conexï¿½es
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException("Erro ao fechar a conexão", ex);
+            }
         }
 
     }

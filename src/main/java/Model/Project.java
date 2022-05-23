@@ -1,32 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Logger;
+
 
 /**
  *
- * @author Computador
+ * @author Marcio Michelluzzi
  */
 public class Project {
-       private int id;
+
+    private int id;
     private String name;
     private String description;
+    private List<Task> tasks;
     private Date createdAt;
     private Date updatedAt;
-    
-    public Project(int id, String name, String description, Date createdAt, Date updatedAt) {
+    private static final Logger LOG = Logger.getLogger(Project.class.getName());
+
+    public Project(int id, String name, String description, List<Task> tasks, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.tasks = tasks;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
     public Project() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     public int getId() {
@@ -53,6 +57,14 @@ public class Project {
         this.description = description;
     }
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -71,8 +83,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return this.name;
+        return name;
     }
-    
-    
+
 }
